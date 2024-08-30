@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    {% load static %}
+    <style>
+      /* Navbar Dropdown */
+      .navbar .dropdown-menu {
+        background-color: #f8f9fa;
+        border: none;
+        border-radius: 0.25rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transform: translateY(10px);
+        opacity: 0;
+        visibility: hidden;
+        display: block;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+      
+      /* Show dropdown menu on hover or focus */
+      .navbar .dropdown:hover .dropdown-menu,
+      .navbar .dropdown:focus-within .dropdown-menu {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+      
+      /* Dropdown items styling */
+      .navbar .dropdown-menu .dropdown-item {
+        padding: 10px 20px;
+        color: #343a40;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+      
+      /* Hover effect for dropdown items */
+      .navbar .dropdown-menu .dropdown-item:hover {
+        background-color: #e9ecef;
+        color: #0056b3;
+      }
+      
+      /* Additional styling */
+      .navbar .dropdown-menu .dropdown-item:active {
+        background-color: #0056b3;
+        color: #fff;
+      }
+      
+      .navbar .dropdown-menu .dropdown-item:focus {
+        background-color: #e9ecef;
+        outline: none;
+      }
+      
+      /* Navbar adjustments */
+      .navbar-nav .nav-link {
+        padding: 0.5rem 1rem;
+        transition: color 0.3s ease;
+      }
+      
+      .navbar-nav .nav-link:hover {
+        color: #0056b3;
+      }
+      
+      .navbar .navbar-brand img {
+        height: 40px;
+        transition: transform 0.3s ease;
+      }
+      
+      .navbar .navbar-brand img:hover {
+        transform: scale(1.1);
+      }
+      
+      .navbar .navbar-collapse {
+        justify-content: space-between;
+      }
+      
+      /* Button styling */
+      .navbar a.btn-primary {
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      }
+      
+      .navbar a.btn-primary:hover {
+        background-color: #004aad;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      
+      /* Navbar Sign-in and Sign-up link styling */
+      .navbar .nav-sign-in,
+      .navbar .nav-sign-up {
+        text-decoration: none;
+        margin-right: 1rem;
+        transition: color 0.3s ease, background-color 0.3s ease;
+      }
+      
+      .navbar .nav-sign-in:hover {
+        color: #0056b3;
+      }
+      
+      .navbar .nav-sign-up {
+        color: #fff;
+        background-color: #007bff;
+        border-radius: 0.25rem;
+        padding: 0.5rem 1rem;
+      }
+      
+      .navbar .nav-sign-up:hover {
+        background-color: #0056b3;
+      }
+      
+      /* Media query for mobile view */
+      @media (max-width: 767px) {
+        .navbar .navbar-brand img {
+          height: 35px;
+        }
+      
+        .navbar-nav .nav-link {
+          padding: 0.4rem 0.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#"><img src="{% static 'images/logo.png' %}" class="img-fluid d-inline-block align-top" alt="Bluestock logo" /></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">PRODUCTS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">PRICING</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">COMMUNITY</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">MEDIA</a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li>
+                <a class="dropdown-item" href="#">link 1</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">link 2</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">link 3</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">SUPPORT</a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li>
+                <a class="dropdown-item" href="#">link 1</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">link 2</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">link 3</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div>
+          {% if user.is_authenticated %}
+            <a href="{% url 'login' %}" class="nav-sign-up" style="background-color: red;">Logout</a>
+          {% endif %}
+          {% if not user.is_authenticated %}
+          <a href="{% url 'login' %}" class="nav-sign-in">Sign in</a>
+          <a href="{% url 'signup' %}" class="nav-sign-up">Sign up</a>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+  </body>
+</html>

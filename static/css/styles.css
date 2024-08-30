@@ -1,0 +1,13 @@
+#google-symbol {
+    font-size: 24px; /* Adjust as needed */
+    font-weight: bold;
+    background: linear-gradient(to right, 
+      #4285F4, /* Blue */
+      #34A853, /* Green */
+      #FBBC05, /* Yellow */
+      #EA4335  /* Red */
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  

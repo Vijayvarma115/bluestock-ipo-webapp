@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    {% load static %}
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+
+        .btn-purple {
+            background-color: #6c63ff;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-purple:hover {
+            background-color: #5a55c7;
+        }
+
+        .separator {
+            text-align: center;
+            margin: 20px 0;
+            color: #aaa;
+            font-size: 0.9em;
+        }
+
+        .input-group-text {
+            cursor: pointer;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .input-group-text:hover {
+            transform: scale(1.1);
+            color: #5a55c7;
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #6c63ff;
+        }
+
+        .form-group {
+            position: relative;
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 20px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        .g-recaptcha {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="col-md-5 mx-auto">
+            <div class="text-center mb-4">
+                <img src="{% static 'images/logo.png' %}" alt="Logo" class="img-fluid mb-3" style="max-width: 200px;">
+                <h2 class="h5 fw-bold">Create an account</h2>
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.name.label_tag }}
+                    {{ form.name }}
+                    {% for error in form.name.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    {{ form.email.label_tag }}
+                    {{ form.email }}
+                    {% for error in form.email.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    <label for="id_password1">Password</label>
+                    <div class="input-group">
+                        {{ form.password1 }}
+                        <div class="input-group-append">
+                            <span class="input-group-text" onclick="togglePasswordVisibility('id_password1')">👁️</span>
+                        </div>
+                    </div>
+                    {% for error in form.password1.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    <label for="id_password2">Confirm Password</label>
+                    <div class="input-group">
+                        {{ form.password2 }}
+                        <div class="input-group-append">
+                            <span class="input-group-text" onclick="togglePasswordVisibility('id_password2')">👁️</span>
+                        </div>
+                    </div>
+                    {% for error in form.password2.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    <div class="g-recaptcha" data-sitekey="your_site_key_here"></div>
+                </div>
+                <button type="submit" class="btn btn-purple btn-block">Sign Up</button>
+                <div class="separator">or sign up with</div>
+                <button type="button" class="btn btn-light btn-block">
+                  <a href="{% url 'socialaccount_login' 'google' %}" class="btn btn-light btn-block d-flex align-items-center justify-content-center">
+                    Continue with Google
+                </button>
+            </form>
+            <div class="text-center mt-2 mb-5">
+                Already have an account? <a href="{% url 'login' %}" class="text-decoration-none">Sign in here</a>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function togglePasswordVisibility(fieldId) {
+            const passwordField = document.getElementById(fieldId);
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+            } else {
+                passwordField.type = "password";
+            }
+        }
+    </script>
+</body>
+</html>
+
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    {% load static %}
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+      body {
+        font-family: 'Arial', sans-serif;
+       }
+
+      .btn-purple {
+        background-color: #6c63ff;
+        color: white;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn-purple:hover {
+        background-color: #5a55c7;
+      }
+
+      .separator {
+        text-align: center;
+        margin: 20px 0;
+        color: #aaa;
+        font-size: 0.9em;
+      }
+
+      .input-group-text {
+        cursor: pointer;
+        transition: transform 0.2s ease, color 0.2s ease;
+      }
+
+      .input-group-text:hover {
+        transform: scale(1.1);
+        color: #5a55c7;
+      }
+
+      .form-control:focus {
+        box-shadow: none;
+        border-color: #6c63ff;
+      }
+
+      .form-group {
+        position: relative;
+        animation: fadeInUp 0.6s ease both;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translate3d(0, 20px, 0);
+        }
+        to {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
+      }
+
+      .g-recaptcha {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="col-md-5 mx-auto">
+        <div class="text-center mb-4">
+          <img src="{% static 'images/logo.png' %}" alt="Logo" class="img-fluid mb-3" style="max-width: 200px;">
+          <h2 class="h5 fw-bold">Create an account</h2>
+        </div>
+        <form method="post">
+          {% csrf_token %}
+          <div class="form-group">
+            {{ form.name.label_tag }}
+            {{ form.name }}
+            {% for error in form.name.errors %}
+              <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+          </div>
+          <div class="form-group">
+            {{ form.email.label_tag }}
+            {{ form.email }}
+            {% for error in form.email.errors %}
+              <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+          </div>
+          <div class="form-group">
+            <label for="id_password1">Password</label>
+            <div class="input-group">
+              {{ form.password1 }}
+              <div class="input-group-append">
+                <span class="input-group-text" onclick="togglePasswordVisibility('id_password1')">👁️</span>
+              </div>
+            </div>
+            {% for error in form.password1.errors %}
+              <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+          </div>
+          <div class="form-group">
+            <label for="id_password2">Confirm Password</label>
+            <div class="input-group">
+              {{ form.password2 }}
+              <div class="input-group-append">
+                <span class="input-group-text" onclick="togglePasswordVisibility('id_password2')">👁️</span>
+              </div>
+            </div>
+            {% for error in form.password2.errors %}
+              <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+          </div>
+          <div class="form-group">
+            <div class="g-recaptcha" data-sitekey="your_site_key_here"></div>
+          </div>
+          <button type="submit" class="btn btn-purple btn-block">Sign Up</button>
+          <div class="separator">or sign up with</div>
+          <button type="button" class="btn btn-light btn-block">
+            <img src="{% static 'images/google-icon.png' %}" alt="Google" style="width: 20px; margin-right: 10px;">
+            Continue with Google
+          </button>
+        </form>
+        <div class="text-center mt-4">
+          Already have an account? <a href="{%url 'login' %}" class="text-decoration-none">Sign in here</a>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        function togglePasswordVisibility(fieldId) {
+          const passwordField = document.getElementById(fieldId);
+          if (passwordField.type === "password") {
+            passwordField.type = "text";
+          } else {
+            passwordField.type = "password";
+          }
+        }
+        window.togglePasswordVisibility = togglePasswordVisibility;
+      });
+    </script>
+  </body>
+</html> {% endcomment %}

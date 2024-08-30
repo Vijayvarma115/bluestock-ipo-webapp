@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAQ Section</title>
+    <style>
+      /* Basic styling for the FAQ section */
+      .faq-header {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+      
+      .faq-item {
+        margin-bottom: 10px;
+      }
+      
+      .faq-question {
+        background-color: #f7f7f7;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 15px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background-color 0.3s ease;
+      }
+      
+      .faq-question:hover {
+        background-color: #e7e7e7;
+      }
+      
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        padding-left: 15px;
+        transition: max-height 0.3s ease, padding 0.3s ease;
+        border-left: 2px solid #ddd;
+      }
+      
+      .faq-answer.show {
+        max-height: 200px; /* Adjust based on content */
+        padding: 15px;
+      }
+      
+      .faq-icon {
+        font-size: 18px;
+        transition: transform 0.3s ease;
+      }
+      
+      .faq-question.collapsed .faq-icon {
+        transform: rotate(0);
+      }
+      
+      .faq-question:not(.collapsed) .faq-icon {
+        transform: rotate(45deg);
+      }
+      
+      /* Custom animation for the text */
+      .faq-answer p {
+        animation: fadeIn 0.5s ease-in-out;
+        margin: 0;
+      }
+      
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="faq-section">
+        <h3 class="faq-header">Frequently Asked Questions</h3>
+
+        <div class="faq-item">
+          <div class="faq-question collapsed" onclick="toggleFAQ(this)">
+            <span>How to Subscribe to an IPO?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>
+              Step 1: Log in to your respective service provider.<br />
+              Step 2: Click on the IPO button.<br />
+              Step 3: Select the IPO you want to bid on and enter the relevant details.<br />
+              Step 4: Your subscription will be completed once you make the payment or give permission.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question collapsed" onclick="toggleFAQ(this)">
+            <span>Should I buy an IPO on the first day?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>It depends on your investment strategy and the IPO details. Consider the risks and rewards before making a decision.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question collapsed" onclick="toggleFAQ(this)">
+            <span>How do you know if an IPO is good?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Research the company's financials, market position, and potential for growth. Consulting with financial advisors can also help.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question collapsed" onclick="toggleFAQ(this)">
+            <span>How to check IPO start date?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>IPO start dates are usually announced by the stock exchanges or the company itself. Keep an eye on financial news and updates.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question collapsed" onclick="toggleFAQ(this)">
+            <span>What is issue size?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>The issue size of an IPO refers to the total amount of shares or the total value of shares offered to the public by the company. It is calculated based on the number of shares and the price band set for the IPO.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question collapsed" onclick="toggleFAQ(this)">
+            <span>How many shares are in a lot?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>The number of shares in a lot can vary from IPO to IPO. The company or the stock exchange defines the lot size, which indicates the minimum number of shares that can be applied for by an investor.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question collapsed" onclick="toggleFAQ(this)">
+            <span>How is the lot size calculated?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>The lot size is calculated based on the minimum investment amount set by the company and the share price. It ensures affordability for retail investors and typically falls within a range defined by the stock exchange.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question collapsed" onclick="toggleFAQ(this)">
+            <span>Who decides the IPO price band?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>The IPO price band is decided by the company in consultation with the book-running lead managers (BRLMs) or underwriters. It is based on the company’s valuation, market conditions, demand, and supply dynamics.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question collapsed" onclick="toggleFAQ(this)">
+            <span>What is IPO GMP (Grey Market Premium)?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>IPO GMP refers to the premium amount at which IPO shares are traded in the grey market before they are listed on the stock exchanges. It provides an unofficial indication of the expected listing price.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question collapsed" onclick="toggleFAQ(this)">
+            <span>How many lots should I apply for in an IPO?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>The number of lots you should apply for depends on your investment capacity, risk appetite, and the IPO’s potential. Consider diversifying your investments and consult with a financial advisor to make an informed decision.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function toggleFAQ(element) {
+        const answer = element.nextElementSibling
+        const icon = element.querySelector('.faq-icon')
+      
+        if (answer.classList.contains('show')) {
+          answer.classList.remove('show')
+          icon.textContent = '+'
+        } else {
+          answer.classList.add('show')
+          icon.textContent = '-'
+        }
+      }
+    </script>
+  </body>
+</html>

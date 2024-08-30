@@ -1,0 +1,48 @@
+/* Define CSS Variables for Colors and Fonts */
+:root {
+    --primary-color: #6200EA;
+    --secondary-color: #FFFFFF;
+    --font-family: 'Inter', sans-serif;
+    --text-color: #333333;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+/* Center the form */
+.signup-form {
+    max-width: 400px;
+    width: 100%;
+}
+
+/* Add subtle hover effects */
+.signup-form .form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(98, 0, 234, 0.2);
+}
+
+.signup-form button {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    transition: background-color 0.3s ease;
+}
+
+.signup-form button:hover {
+    background-color: darken(var(--primary-color), 10%);
+}
+
+/* Style for toggle password visibility */
+.toggle-password {
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+    .signup-form {
+        padding: 2rem;
+    }
+}

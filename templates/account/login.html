@@ -1,0 +1,78 @@
+<!-- login.html -->
+
+{% extends 'base.html' %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <img src="{% static 'images/logo.png' %}" alt="company logo" class="img-fluid mb-4" />
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-group mb-3">
+          <label for="id_email" class="form-label">Email Address</label>
+          {{ form.email }}
+        </div>
+
+        <div class="d-flex justify-content-between mb-3">
+          <label for="id_password" class="form-label">Password</label>
+          <a href="#" class="text-decoration-none" style="color: #7a1eff;">Forgot Password?</a>
+        </div>
+
+        <div class="form-group mb-3">
+          <div class="input-group">
+            {{ form.password }}
+            <span class="input-group-text"><i class="fa fa-eye" id="toggle-password"></i></span>
+          </div>
+        </div>
+
+        <div class="form-group form-check mb-3">
+          {{ form.remember_me }}
+          <label class="form-check-label" for="id_remember_me">Keep me signed in</label>
+        </div>
+
+        <div class="form-group mb-3">
+          {{ form.captcha }}
+        </div>
+
+        <div class="form-group mb-3">
+          <input type="submit" value="Login" class="btn btn-primary btn-block w-100" style="background-color: #7a1eff; border-color: #7a1eff;" />
+        </div>
+
+        <div class="text-center mb-3">
+          <p class="text-muted">or sign in with</p>
+        </div>
+
+        <div class="form-group mb-3">
+          <button type="button" class="btn btn-light btn-block w-100">
+            <i class="fab fa-google me-2" id="google-symbol"></i>Continue with Google
+          </button>
+        </div>
+
+        <div class="text-center mb-3">
+          <a href="{% url 'signup' %}" class="text-decoration-none" style="color: #7a1eff;">Create an account</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<style>
+  #google-symbol {
+    font-size: 20px; 
+    font-weight: bold;
+    background: linear-gradient(to right, 
+      #4285F4,  
+      #34A853,  
+      #FBBC05,  
+      #EA4335   
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+</style>
+{% endblock %}
+ 

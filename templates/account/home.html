@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title text-center">Welcome to BlueStock</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>BlueStock is a stock market simulation platform that allows users to create, trade, and analyze stocks. With our intuitive interface and advanced algorithms, we aim to help users make informed investment decisions.</p>
+                        <p>To get started, please create an account by filling out the form below.</p>
+                        <a href="{% url 'main_view' %}" class="btn btn-primary">Know more about us!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
