@@ -1,7 +1,9 @@
-follow these command to run this project
+Follow these command to run this project:
 
 git clone https://github.com/Vijayvarma115/bluestock-ipo-webapp.git
+
 cd bluestock-ipo-webapp
+
 pip3 install -r requirements.txt
 python3 manage.py makemigrations
 python3 manage.py migrate
@@ -52,14 +54,13 @@ DATABASES = {
 }
 
 Apply Migrations:
+-->python3 manage.py makemigrations
 
-python3 manage.py makemigrations
-python3 manage.py migrate
+-->python3 manage.py migrate
 
-python3 manage.py runserver
+-->python3 manage.py runserver
 
-
-follow these video link how to connect with postgresql
+**Follow these video link how to connect with postgresql:**
 
 https://drive.google.com/file/d/1jUYqTqp_CTMRYu6FKNIT5327IPQh0fYk/view?usp=sharing
 
